@@ -1,0 +1,21 @@
+<h2>📷 Medya Yükle</h2>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<form method="POST" action="/upload" enctype="multipart/form-data">
+    
+
+    <input type="file" name="file">
+    <button type="submit">Yükle</button>
+</form>
+
+<h3>Paylaşılan Medyalar</h3>
+<ul>
+    {% for file in files %}
+        <li>
+            {% if file.endswith('.mp4') %}
+                <video src="/static/uploads/{{ file }}" controls width="250"></video>
+            {% else %}
+                <img src="/static/uploads/{{ file }}" width="250">
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
